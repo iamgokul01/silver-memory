@@ -58,10 +58,9 @@ const convertMovieObj = (obj) => {
 //Get particular movie
 app.get("/movies/:movieId", async (request, response) => {
   let { movieId } = request.params;
-  const fetchMovie = `select * from movie where movie_id = ${movieId};`;
+  let fetchMovie = `select * from movie where movie_id = ${movieId};`;
   let res = await dataBase.get(fetchMovie);
-  let out = res.map((each) => convertMovieObj(each));
-  response.send(res);
+  response.send(convertMovieObj(res));
 });
 
 //Update movie
